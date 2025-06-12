@@ -1,14 +1,10 @@
 class CartsController < ApplicationController
-    before_action :set_product, only: [:add_item, :remove_item]
-  def show
-  end
+  before_action :set_product, only: [:add_item, :remove_item]
 
-  def add_item
-  end
+  private
 
-  def remove_item
-  end
-
-  def empty
+  def set_product
+    @product = Product.find(params[:product_id])
   end
 end
+
