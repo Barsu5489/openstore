@@ -20,6 +20,12 @@ class CartsController < ApplicationController
     redirect_to cart_path
   end
 
+  def empty
+    current_cart.cart_items.destroy_all
+    flash[:notice] = "Your cart is now empty"
+    redirect_to root_path
+  end
+
   private
 
   def set_product
