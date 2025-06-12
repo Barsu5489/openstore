@@ -13,6 +13,13 @@ class CartsController < ApplicationController
     redirect_to cart_path
   end
 
+  def remove_item
+    @cart_item = current_cart.cart_items.find_by(product: @product)
+    @cart_item&.destroy
+    flash[:notice] = "Removed from your cart"
+    redirect_to cart_path
+  end
+
   private
 
   def set_product
