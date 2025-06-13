@@ -2,10 +2,20 @@
 <% if @cart_items.any? %>
   <ul>
     <% @cart_items.each do |item| %>
-      <li>
-        <%= item.product.title %> - <%= item.quantity %> x <%= number_to_currency(item.product.price) %>
-        <%= link_to 'Remove', remove_item_cart_path(item.product), method: :delete %>
-      </li>
+ <tr>
+  <td><%= item.product.title %></td>
+  <td>
+    <%= button_to '+', increase_item_cart_path(item.product), method: :post, class: "button is-small" %>
+    <%= item.quantity %>
+    <%= button_to '-', decrease_item_cart_path(item.product), method: :post, class: "button is-small" %>
+  </td>
+  <td>$<%= item.product.price %></td>
+  <td>$<%= item.product.price * item.quantity %></td>
+  <td>
+    <%= link_to "Remove", remove_item_cart_path(item.product), method: :delete, class: "button is-small is-danger" %>
+  </td>
+</tr>
+
     <% end %>
   </ul>
   <p>Total: <%= number_to_currency(@cart_items.sum { |item| item.product.price * item.quantity }) %></p>
