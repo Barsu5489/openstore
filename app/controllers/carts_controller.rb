@@ -26,6 +26,27 @@ class CartsController < ApplicationController
     flash[:notice] = "Your cart is now empty"
     redirect_to root_path
   end
+  def increase_item
+  item = current_cart.cart_items.find_by(product_id: params[:product_id])
+  if item
+    item.quantity += 1
+    item.save
+  end
+end
+
+def decrease_item
+  item = current_cart.cart_items.find_by(product_id: params[:product_id])
+  if item
+    item.quantity -= 1
+    if item.quantity <= 0
+      item.destroy
+    else
+      item.save
+    end
+  end
+
+end
+
 
   private
 
