@@ -32,6 +32,7 @@ class CartsController < ApplicationController
     item.quantity += 1
     item.save
   end
+  redirect_to cart_path
 end
 
 def decrease_item
@@ -44,7 +45,7 @@ def decrease_item
       item.save
     end
   end
-
+  redirect_to cart_path
 end
 
 
