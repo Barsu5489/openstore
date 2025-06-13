@@ -7,6 +7,7 @@ class CartsController < ApplicationController
 
   def add_item
     @cart_item = current_cart.cart_items.find_or_initialize_by(product: @product)
+    @cart_item.quantity ||= 0
     @cart_item.quantity += 1
     @cart_item.save
     flash[:notice] = "Added to your cart"
