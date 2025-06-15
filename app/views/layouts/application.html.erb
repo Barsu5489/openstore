@@ -38,11 +38,13 @@
         <div class="navbar-end">
           <div class="navbar-item">
             <div class="field is-grouped">
-<%= link_to cart_path do %>
-  <i class="fas fa-shopping-cart"></i>
-  Cart (<%= current_cart.cart_items.count %>)
-<% end %>
-
+  <!-- Cart Link -->
+          <%= link_to cart_path, class: "button is-light is-rounded" do %>
+            <span class="icon">
+              <i class="fas fa-shopping-cart"></i>
+            </span>
+            <span>Cart (<%= current_cart.cart_items.count %>)</span>
+          <% end %>
 
             <% if user_signed_in? %>
               <%= link_to 'Sell', new_product_path, class: "navbar-item button is-dark" %>
